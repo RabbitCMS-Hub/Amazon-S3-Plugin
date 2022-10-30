@@ -19,7 +19,7 @@
 '**********************************************
 
 Class amazon_s3_plugin
-	Private PLUGIN_CODE, PLUGIN_DB_NAME, PLUGIN_NAME, PLUGIN_VERSION, PLUGIN_CREDITS, PLUGIN_GIT, PLUGIN_DEV_URL, PLUGIN_FILES_ROOT
+	Private PLUGIN_CODE, PLUGIN_DB_NAME, PLUGIN_NAME, PLUGIN_VERSION, PLUGIN_CREDITS, PLUGIN_GIT, PLUGIN_DEV_URL, PLUGIN_FILES_ROOT, PLUGIN_ICON, PLUGIN_REMOVABLE, PLUGIN_ROOT, PLUGIN_FOLDER_NAME
 	
 	Private strAccessKeyID, strSecretAccessKey, awsStatus, awsStoreFile, s3_strBinaryData
 	Private s3_strLocalFile, s3_strLocalFileRaw, s3_strRemoteFile, s3_strBucket, s3_strOutFileName
@@ -83,17 +83,17 @@ Class amazon_s3_plugin
 		a=GetSettings(""&PLUGIN_CODE&"_REGISTERED", ""& Now() &"")
 		a=GetSettings(""&PLUGIN_CODE&"_CODENO", "11")
 		a=GetSettings(""&PLUGIN_CODE&"_ACTIVE", "0")
-        a=GetSettings(""&PLUGIN_CODE&"_ICON", "zmdi zmdi-amazon zmdi-hc-fw")
+		a=GetSettings(""&PLUGIN_CODE&"_FOLDER", PLUGIN_FOLDER_NAME)
 
 		a=GetSettings(""&PLUGIN_CODE&"_ACCESS_ID", "")
 		a=GetSettings(""&PLUGIN_CODE&"_SECRET_KEY", "")
 		a=GetSettings(""&PLUGIN_CODE&"_BUCKET", "")
 		a=GetSettings(""&PLUGIN_CODE&"_LOCAL_TEMP_FOLDER", "/content/trash/")
 		a=GetSettings(""&PLUGIN_CODE&"_STORE_FILES", "PRODUCT,BLOG,USERFILE")
-		a=GetSettings(""&PLUGIN_CODE&"_FOLDER", "amazon-s3-plugin")
 
 		' Register Settings
 		'------------------------------
+		DebugTimer ""& PLUGIN_CODE &" class_register() End"
 	End Property
 	'---------------------------------------------------------------
 	'
@@ -217,6 +217,8 @@ Class amazon_s3_plugin
     	PLUGIN_CREDITS 			= "Coded by @cavebring [https://github.com/cavebring/class-classic-ASP-aws-S3] Redevelopment @badursun"
     	PLUGIN_GIT 				= "https://github.com/RabbitCMS-Hub/Amazon-S3-Plugin"
     	PLUGIN_DEV_URL 			= "https://adjans.com.tr"
+    	PLUGIN_ICON 			= "zmdi-amazon"
+    	PLUGIN_REMOVABLE 		= True
     	PLUGIN_FILES_ROOT 		= PLUGIN_VIRTUAL_FOLDER(This)
     	'-------------------------------------------------------------------------------------
     	' PluginTemplate Main Variables
@@ -248,32 +250,21 @@ Class amazon_s3_plugin
 	'---------------------------------------------------------------
 	' Plugin Defines
 	'---------------------------------------------------------------
-	Public Property Get PluginCredits()
-		PluginCredits = PLUGIN_CREDITS
-	End Property
+	Public Property Get PluginCode() 		: PluginCode = PLUGIN_CODE 					: End Property
+	Public Property Get PluginName() 		: PluginName = PLUGIN_NAME 					: End Property
+	Public Property Get PluginVersion() 	: PluginVersion = PLUGIN_VERSION 			: End Property
+	Public Property Get PluginGit() 		: PluginGit = PLUGIN_GIT 					: End Property
+	Public Property Get PluginDevURL() 		: PluginDevURL = PLUGIN_DEV_URL 			: End Property
+	Public Property Get PluginFolder() 		: PluginFolder = PLUGIN_FILES_ROOT 			: End Property
+	Public Property Get PluginIcon() 		: PluginIcon = PLUGIN_ICON 					: End Property
+	Public Property Get PluginRemovable() 	: PluginRemovable = PLUGIN_REMOVABLE 		: End Property
+	Public Property Get PluginCredits() 	: PluginCredits = PLUGIN_CREDITS 			: End Property
+	Public Property Get PluginRoot() 		: PluginRoot = PLUGIN_ROOT 					: End Property
+	Public Property Get PluginFolderName() 	: PluginFolderName = PLUGIN_FOLDER_NAME 	: End Property
+	Public Property Get PluginDBTable() 	: PluginDBTable = IIf(Len(PLUGIN_DB_NAME)>2, "tbl_plugin_"&PLUGIN_DB_NAME, "") 	: End Property
 
-	Public Property Get PluginCode()
-		PluginCode = PLUGIN_CODE
-	End Property
-
-	Public Property Get PluginName()
-		PluginName = PLUGIN_NAME
-	End Property
-
-	Public Property Get PluginVersion()
-		PluginVersion = PLUGIN_VERSION
-	End Property
-	Public Property Get PluginGit()
-		PluginGit = PLUGIN_GIT
-	End Property
-	Public Property Get PluginDevURL()
-		PluginDevURL = PLUGIN_DEV_URL
-	End Property
 	Private Property Get This()
-		This = Array(PLUGIN_CODE, PLUGIN_NAME, PLUGIN_VERSION, PLUGIN_GIT, PLUGIN_DEV_URL, PLUGIN_FILES_ROOT)
-	End Property
-	Public Property Get PluginFolder()
-		PluginFolder = PLUGIN_FILES_ROOT
+		This = Array(PluginCode, PluginName, PluginVersion, PluginGit, PluginDevURL, PluginFolder, PluginIcon, PluginRemovable, PluginCredits, PluginRoot, PluginFolderName, PluginDBTable )
 	End Property
 	'---------------------------------------------------------------
 	' Plugin Defines
