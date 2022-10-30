@@ -14,13 +14,6 @@
 '* Developer: <Anthony Burak DURSUN>
 '* E-Mail   : badursun@adjans.com.tr
 '* Corp     : https://adjans.com.tr
-'* 
-'* Amazon Class Module
-'* ---------------------
-'* Created By  :  John Cavebring 
-'* Created date:  2014-03-29
-'* https://github.com/cavebring/class-classic-ASP-aws-S3/blob/master/class_aws_s3.asp
-'* Amazon Web Services > My Account > Access Credentials > Access Keys
 '**********************************************
 ' LAST UPDATE: 28.10.2022 15:33 @badursun
 '**********************************************
@@ -221,7 +214,7 @@ Class amazon_s3_plugin
     	PLUGIN_CODE 			= "AWS_S3"
     	PLUGIN_DB_NAME 			= "aws_log"
     	PLUGIN_VERSION 			= "1.0.0"
-    	PLUGIN_CREDITS 			= "@cavebring https://github.com/cavebring/class-classic-ASP-aws-S3 @badursun Redevelopment"
+    	PLUGIN_CREDITS 			= "Coded by @cavebring [https://github.com/cavebring/class-classic-ASP-aws-S3] Redevelopment @badursun"
     	PLUGIN_GIT 				= "https://github.com/RabbitCMS-Hub/Amazon-S3-Plugin"
     	PLUGIN_DEV_URL 			= "https://adjans.com.tr"
     	PLUGIN_FILES_ROOT 		= PLUGIN_VIRTUAL_FOLDER(This)
