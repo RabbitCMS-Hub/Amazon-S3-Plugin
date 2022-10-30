@@ -69,8 +69,7 @@ Class amazon_s3_plugin
     		q=q+"  KEY `IND1` (`LOCAL_NAME`), "
     		q=q+"  KEY `IND3` (`REMOTE_NAME`,`SILINDI`) "
     		q=q+") ENGINE=MyISAM DEFAULT CHARSET=utf8; "
-			PluginTableStructure = q : q=""
-			Conn.Execute(PluginTableStructure)
+			Conn.Execute(q)
 
     		Conn.Execute("SET FOREIGN_KEY_CHECKS = 1;") 
 
@@ -189,7 +188,7 @@ Class amazon_s3_plugin
 			.Write  		QuickSettings("input", ""& PLUGIN_CODE &"_BUCKET", "Bucket Name", "", TO_DB)
 			.Write "    </div>"
 			.Write "    <div class=""col-lg-6 col-sm-12"">"
-			.Write  		QuickSettings("input", ""& PLUGIN_CODE &"_LOCAL_TEMP_FOLDER", "Local Temp Folder", "/content/trash/", TO_DB)
+			.Write  		QuickSettings("file-explorer", ""& PLUGIN_CODE &"_LOCAL_TEMP_FOLDER", "Local Temp Folder", "/content/trash/", TO_DB)
 			.Write "    </div>"
 			.Write "    <div class=""col-lg-12 col-sm-12"">"
 			.Write  		QuickSettings("multiselect", ""& PLUGIN_CODE &"_STORE_FILES", "Only Store This Files", STORABLE_FILES , TO_DB)
