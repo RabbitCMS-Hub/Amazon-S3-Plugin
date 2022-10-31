@@ -19,7 +19,7 @@
 '**********************************************
 
 Class amazon_s3_plugin
-	Private PLUGIN_CODE, PLUGIN_DB_NAME, PLUGIN_NAME, PLUGIN_VERSION, PLUGIN_CREDITS, PLUGIN_GIT, PLUGIN_DEV_URL, PLUGIN_FILES_ROOT, PLUGIN_ICON, PLUGIN_REMOVABLE, PLUGIN_ROOT, PLUGIN_FOLDER_NAME
+	Private PLUGIN_CODE, PLUGIN_DB_NAME, PLUGIN_NAME, PLUGIN_VERSION, PLUGIN_CREDITS, PLUGIN_GIT, PLUGIN_DEV_URL, PLUGIN_FILES_ROOT, PLUGIN_ICON, PLUGIN_REMOVABLE, PLUGIN_ROOT, PLUGIN_FOLDER_NAME, PLUGIN_AUTOLOAD
 	
 	Private strAccessKeyID, strSecretAccessKey, awsStatus, awsStoreFile, s3_strBinaryData
 	Private s3_strLocalFile, s3_strLocalFileRaw, s3_strRemoteFile, s3_strBucket, s3_strOutFileName
@@ -217,8 +217,11 @@ Class amazon_s3_plugin
     	PLUGIN_CREDITS 			= "Coded by @cavebring [https://github.com/cavebring/class-classic-ASP-aws-S3] Redevelopment @badursun"
     	PLUGIN_GIT 				= "https://github.com/RabbitCMS-Hub/Amazon-S3-Plugin"
     	PLUGIN_DEV_URL 			= "https://adjans.com.tr"
+    	PLUGIN_FOLDER_NAME 		= "Amazon-S3-Plugin"
     	PLUGIN_ICON 			= "zmdi-amazon"
     	PLUGIN_REMOVABLE 		= True
+    	PLUGIN_AUTOLOAD 		= False
+    	PLUGIN_ROOT 			= PLUGIN_DIST_FOLDER_PATH(This)
     	PLUGIN_FILES_ROOT 		= PLUGIN_VIRTUAL_FOLDER(This)
     	'-------------------------------------------------------------------------------------
     	' PluginTemplate Main Variables
@@ -230,7 +233,17 @@ Class amazon_s3_plugin
 		strSecretAccessKey 		= GetSettings(""& PLUGIN_CODE &"_SECRET_KEY", "")
 		s3_strBucket 			= GetSettings(""& PLUGIN_CODE &"_BUCKET", "")
     	
+    	'-------------------------------------------------------------------------------------
+    	' PluginTemplate Register App
+    	'-------------------------------------------------------------------------------------
     	class_register()
+
+    	'-------------------------------------------------------------------------------------
+    	' Hook Auto Load Plugin
+    	'-------------------------------------------------------------------------------------
+    	If PLUGIN_AUTOLOAD_AT("WEB") = True Then 
+
+    	End If
 	end sub
 	'---------------------------------------------------------------
 	'
@@ -262,9 +275,10 @@ Class amazon_s3_plugin
 	Public Property Get PluginRoot() 		: PluginRoot = PLUGIN_ROOT 					: End Property
 	Public Property Get PluginFolderName() 	: PluginFolderName = PLUGIN_FOLDER_NAME 	: End Property
 	Public Property Get PluginDBTable() 	: PluginDBTable = IIf(Len(PLUGIN_DB_NAME)>2, "tbl_plugin_"&PLUGIN_DB_NAME, "") 	: End Property
+	Public Property Get PluginAutoload() 	: PluginAutoload = PLUGIN_AUTOLOAD 			: End Property
 
 	Private Property Get This()
-		This = Array(PluginCode, PluginName, PluginVersion, PluginGit, PluginDevURL, PluginFolder, PluginIcon, PluginRemovable, PluginCredits, PluginRoot, PluginFolderName, PluginDBTable )
+		This = Array(PluginCode, PluginName, PluginVersion, PluginGit, PluginDevURL, PluginFolder, PluginIcon, PluginRemovable, PluginCredits, PluginRoot, PluginFolderName, PluginDBTable, PluginAutoload)
 	End Property
 	'---------------------------------------------------------------
 	' Plugin Defines
