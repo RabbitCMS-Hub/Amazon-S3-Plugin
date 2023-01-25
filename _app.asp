@@ -53,7 +53,7 @@ Class amazon_s3_plugin
     		q=q+"  `ID` int(11) NOT NULL AUTO_INCREMENT, "
     		q=q+"  `LOCAL_NAME` varchar(255) DEFAULT NULL, "
     		q=q+"  `REMOTE_NAME` varchar(255) DEFAULT NULL, "
-    		q=q+"  `UPLOAD_DATE` datetime DEFAULT NULL, "
+    		q=q+"  `UPLOAD_DATE` datetime DEFAULT current_timestamp(), "
     		q=q+"  `HASH` varchar(32) DEFAULT NULL, "
     		q=q+"  `ETAG` varchar(150) DEFAULT NULL, "
     		q=q+"  `SILINDI` int(1) DEFAULT 0, "
